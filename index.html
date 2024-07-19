@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Web Sitesi</title>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+          body,
+          html {
+               height: 100%;
+               margin: 0;
+          }
+
+          .content {
+               flex: 1;
+          }
+
+          .hero {
+               background: url('https://via.placeholder.com/1900x600') no-repeat center center;
+               background-size: cover;
+               color: white;
+               padding: 60px 0;
+               text-align: center;
+          }
+
+          .card-deck .card {
+               border-radius: 15px;
+               overflow: hidden;
+          }
+
+          .footer {
+               background-color: #343a40;
+               color: #fff;
+               padding: 10px 0;
+          }
+
+          .footer a {
+               color: #fff;
+               text-decoration: none;
+          }
+
+          .footer a:hover {
+               text-decoration: underline;
+          }
+
+          .navbar.sticky {
+               position: fixed;
+               top: 0;
+               width: 100%;
+               z-index: 1000;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+               transition: background-color 0.3s, box-shadow 0.3s;
+          }
+
+          .navbar.scrolled {
+               background-color: #343a40;
+          }
+
+          .content {
+               padding-top: 60px;
+          }
+
+          .modal-dialog {
+               max-width: 500px;
+          }
+     </style>
+</head>
+
+<body class="d-flex flex-column">
+
+     <!-- Kullanıcı Girişi ve Doğrulama Modalı -->
+     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <h5 class="modal-title" id="loginModalLabel">Giriş Yapın</h5>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">
+                         <div id="login-section">
+                              <form id="login-form">
+                                   <div class="form-group">
+                                        <label for="username">Kullanıcı Adı</label>
+                                        <input type="text" class="form-control" id="username"
+                                             placeholder="Kullanıcı Adı" required>
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="password">Şifre</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Şifre"
+                                             required>
+                                   </div>
+                                   <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                              </form>
+                         </div>
+                         <div id="verification-section" style="display: none;">
+                              <form id="verification-form">
+                                   <div class="form-group">
+                                        <label for="verification-code">Doğrulama Kodu</label>
+                                        <input type="text" class="form-control" id="verification-code"
+                                             placeholder="Doğrulama Kodu" required>
+                                   </div>
+                                   <button type="submit" class="btn btn-primary">Doğrula</button>
+                              </form>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <!-- Sabit Menü Bar -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky">
+          <a class="navbar-brand" href="#">Web Sitesi</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                    <li class="nav-item">
+                         <a class="nav-link" href="#" data-page-id="home" onclick="loadContent(this)">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#" data-page-id="projects" onclick="loadContent(this)">Projeler</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="#" data-page-id="about" onclick="loadContent(this)">Hakkında</a>
+                    </li>
+               </ul>
+          </div>
+     </nav>
+
+     <!-- İçerik Alanı -->
+     <div class="content container mt-4" id="content-area">
+          <!-- Dinamik içerik -->
+     </div>
+
+     <!-- Sabit Footer -->
+     <footer class="footer text-center">
+          <p>© 2024 Web Sitesi. Tüm Hakları Saklıdır. <a href="#">Gizlilik Politikası</a> | <a href="#">İletişim</a></p>
+     </footer>
+
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+     <script src="./Utilty/constantsVariable.js"></script>
+     <script src="./Utilty/index.js"></script>
+</body>
+
+</html>
