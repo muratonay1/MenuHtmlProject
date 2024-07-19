@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (verificationCode === validVerificationCode) {
                $('#loginModal').modal('hide');
+               $('#content-area').load(PAGES.HOME+"home.html");
           } else {
                alert('Doğrulama kodu hatalı!');
           }
