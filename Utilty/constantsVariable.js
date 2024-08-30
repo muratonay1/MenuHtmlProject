@@ -3,3 +3,4 @@ var PAGES={
      "HOME"         : "./Pages/Home/",
      "PROJECTS"     : "./Pages/Projects/"
 }
+

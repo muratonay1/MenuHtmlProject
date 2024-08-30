@@ -1,16 +1,28 @@
-function loadContent(page) {
+
+function loadContent(pageElement) {
+     const pageId = pageElement.getAttribute("data-page-id");
+     const pagePath = PAGES[pageId.toUpperCase()] + pageId + ".html";
+
      document.getElementById('content-area').innerHTML = 'Yükleniyor...';
-     $('#content-area').load(PAGES[page.getAttribute("data-page-id").toUpperCase()] + page.getAttribute("data-page-id") + ".html");
+
+     $('#content-area').load(pagePath, function (response, status, xhr) {
+          if (status === "error") {
+               console.error("Sayfa yüklenemedi: " + xhr.status + " " + xhr.statusText);
+               document.getElementById('content-area').innerHTML = 'Sayfa yüklenemedi.';
+          } else {
+               const scriptPath = PAGES[pageId.toUpperCase()] + pageId + ".js";
+               $.getScript(scriptPath)
+                    .fail(function (jqxhr, settings, exception) {
+                         console.error("JS yüklenemedi: " + scriptPath, exception);
+                    });
+          }
+     });
 }
+
 document.addEventListener("DOMContentLoaded", function () {
      const validUsername = "admin";
      const validPassword = "123";
      const validVerificationCode = "123";
-
-     function loadContent(page) {
-          document.getElementById('content-area').innerHTML = 'Yükleniyor...';
-          $('#content-area').load(PAGES[page.toUpperCase()]+page+".html");
-     }
 
      $('#loginModal').modal('show');
 
@@ -35,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (verificationCode === validVerificationCode) {
                $('#loginModal').modal('hide');
-               $('#content-area').load(PAGES.HOME+"home.html");
+               const homeLink = document.querySelector('a[data-page-id="home"]');
+               loadContent(homeLink);
           } else {
                alert('Doğrulama kodu hatalı!');
           }
@@ -49,4 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                navbar.classList.remove('scrolled');
           }
      });
+
+     const homeLink = document.querySelector('a[data-page-id="home"]');
+     loadContent(homeLink);
 });
